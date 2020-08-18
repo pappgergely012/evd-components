@@ -1,0 +1,27 @@
+{
+  "name": "@evd-components/react-lib",
+  "version": "1.0.0",
+  "description": "This is a web components library from falatozz developers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Papp Gergely",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pappgergely012/evd-components.git"
+  },
+  "keywords": [
+    "react",
+    "components",
+    "react",
+    "input",
+    "react",
+    "dropdown"
+  ],
+  "bugs": {
+    "url": "https://github.com/pappgergely012/evd-components/issues"
+  },
+  "homepage": "https://github.com/pappgergely012/evd-components#readme"
+}
