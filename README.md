@@ -1,18 +1,23 @@
-# EInput
+### EVD-components/react-lib
+React components for faster development. 
+Simple themes with unique colors and 
 
-## Npm
-> npm install @evd-components/react-lib
-
-## Yarn
-> yarn add @evd-components/react-lib
+## Installation
+npm install @evd-components/react-lib <br />
+or <br />
+yarn add @evd-components/react-lib <br />
 
 ## import to code
-> import { Input } from '@evd-components/react-lib;
+```jsx 
+import { Input } from '@evd-components/react-lib;
+```
 
 
-### Input Usage
-> <Input 
->   value="value string"
->   placeholder="placeholder string"
->   onChange={() => alert('input changed')}
-> />
+## Usage of input
+```jsx
+<Input 
+  value="value string"
+  placeholder="placeholder string"
+  onChange={() => alert('input changed')}
+/>
+```
