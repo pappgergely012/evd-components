@@ -1,10 +1,10 @@
 ### EVD-components/react-lib
 React components for faster development. 
-Simple themes with unique colors and 
+Simple themes with high customizability.
+
 
 ## Installation
-npm install @evd-components/react-lib <br />
-or <br />
+npm install @evd-components/react-lib <br /><br />
 yarn add @evd-components/react-lib <br />
 
 ## import to code
