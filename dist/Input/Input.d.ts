@@ -1,4 +1,4 @@
-import * as React from "react";
+/// <reference types="react" />
 import '../styles/Input.scss';
 export interface IInput {
     placeholder: string;
@@ -9,15 +9,10 @@ export interface IInput {
     type?: string;
     activeColor?: string;
     onBlur?: () => void;
+    onFocus?: () => void;
     onChange: (val: string) => void;
 }
 export interface IState {
     focused: boolean;
 }
-export default class Input extends React.Component<IInput, IState> {
-    constructor(props: IInput);
-    getStyle: () => string;
-    onblur: () => void;
-    onfocus: () => void;
-    render(): JSX.Element;
-}
+export declare const Input: (props: IInput) => JSX.Element;

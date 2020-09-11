@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import '../styles/Input.scss';
 
 export interface IInput {
@@ -10,6 +10,7 @@ export interface IInput {
   type?: string;
   activeColor?: string;
   onBlur?: () => void;
+  onFocus?: () => void;
   onChange: (val: string) => void;
 }
 
@@ -17,69 +18,73 @@ export interface IState {
   focused: boolean;
 }
 
-export default class Input extends React.Component<IInput, IState> {
-  constructor(props: IInput) {
-    super(props);
+export const Input = (props: IInput) => {
+  const [focused, setFocus] = useState<IState['focused']>(false);
+  const { value, className, error, onBlur, onFocus, onChange, type, isHalf, placeholder, activeColor } = props;
 
-    this.state = {
-      focused: false
+  const getStyle = (): string => {
+    let style = 'input-container';
+
+    if (focused) {
+      style += ' focused';
     }
 
-    if (this.props.activeColor && this.props.activeColor?.match('/^#(?:[0-9a-f]{3}){1,2}$/i')) {
-      throw new Error('EInput activeColor must be a hex code (ie: #333 || #333333)');
+    if (value !== '') {
+      style += ' not-empty';
     }
-  }
 
-  getStyle = (): string => {
-    let style: string = 'input-container';
-
-    if (this.state.focused) style += ' focused';
-
-    if (this.props.className) style += `  ${this.props.className}`;
-
-    if (this.props.value.length > 0) style += ' not-empty';
+    if (className) {
+      style += ` ${className}`;
+    }
 
     return style;
   }
 
-  onblur = (): void => {
-    this.setState((prevState) => ({
-      ...prevState,
-      focused: false
-    }));
-
-    this.props.onBlur && this.props.onBlur()
-  };
-
-  onfocus = (): void => {
-    this.setState((prevState) => ({
-      ...prevState,
-      focused: true
-    }));
+  const getError = () => {
+    if (error) {
+      return (
+        <div className="input-error">
+          {error}
+        </div>
+      )
+    }
   }
 
-  render() {
-    const { placeholder, value, isHalf, onChange, type, activeColor } = this.props;
-    const { focused } = this.state;
+  const blur = () => {
+    setFocus(false)
 
-    return (
-      <div className={isHalf ? 'half-input-outer' : 'full-input-outer'}>
-        <div className={this.getStyle()}>
-          <label className="input-placeholder" style={activeColor && focused ? {color: activeColor} : undefined }>
-            {placeholder}
-          </label>
+    if (onBlur) {
+      onBlur();
+    }
+  }
 
-        <input 
+  const focus = () => {
+    setFocus(true);
+
+    if (onFocus) {
+      onFocus();
+    }
+  }
+
+  return ( 
+    <div className={isHalf ? 'half-input-outer' : 'full-input-outer'}>
+      <div className={getStyle()}>
+        <label className="input-placeholder" style={activeColor && focused ? {color: activeColor} : undefined }>
+          {placeholder}
+        </label>
+
+        <input
           className="input"
           value={value}
-          style={activeColor && focused ? {boxShadow: `10px 20px 30px rgba(${activeColor}, .4)`, borderColor: activeColor} : undefined }
+          style={activeColor && focused ? {boxShadow: `0 4px 4px rgba(${activeColor}, .4)`, borderColor: activeColor} : undefined }
           onChange={(ev) => onChange(ev.target.value)}
-          onBlur={() => this.onblur()}
-          onFocus={() => this.onfocus()}
+          onBlur={() => blur()}
+          onFocus={() => focus()}
           type={type}
         />
       </div>
+      
+      {getError()}
     </div>
-    )
-  }
-}
+  )
+};

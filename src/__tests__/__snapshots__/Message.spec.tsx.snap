@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Message 1`] = `
+<div
+  className="message success;"
+>
+  Ooops, something went wrong!
+</div>
+`;
+
+exports[`Message open 1`] = `
+<div
+  className="message show success;"
+>
+  Ooops, something went wrong!
+</div>
+`;

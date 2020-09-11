@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component should return an EInput with placeholder=Asd, value=asd, onChange='function: void'  1`] = `
+exports[`Input test 1`] = `
 <div
   className="full-input-outer"
 >
@@ -10,14 +10,14 @@ exports[`Component should return an EInput with placeholder=Asd, value=asd, onCh
     <label
       className="input-placeholder"
     >
-      Asd
+      Name
     </label>
     <input
       className="input"
       onBlur={[Function]}
       onChange={[Function]}
       onFocus={[Function]}
-      value="asd"
+      value="George"
     />
   </div>
 </div>

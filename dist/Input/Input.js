@@ -1,28 +1,4 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -43,48 +19,46 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var React = __importStar(require("react"));
+exports.Input = void 0;
+var react_1 = __importStar(require("react"));
 require("../styles/Input.scss");
-var Input = /** @class */ (function (_super) {
-    __extends(Input, _super);
-    function Input(props) {
-        var _a;
-        var _this = _super.call(this, props) || this;
-        _this.getStyle = function () {
-            var style = 'input-container';
-            if (_this.state.focused)
-                style += ' focused';
-            if (_this.props.className)
-                style += " \u00A0" + _this.props.className;
-            if (_this.props.value.length > 0)
-                style += ' not-empty';
-            return style;
-        };
-        _this.onblur = function () {
-            _this.setState(function (prevState) { return (__assign(__assign({}, prevState), { focused: false })); });
-            _this.props.onBlur && _this.props.onBlur();
-        };
-        _this.onfocus = function () {
-            _this.setState(function (prevState) { return (__assign(__assign({}, prevState), { focused: true })); });
-        };
-        _this.state = {
-            focused: false
-        };
-        if (_this.props.activeColor && ((_a = _this.props.activeColor) === null || _a === void 0 ? void 0 : _a.match('/^#(?:[0-9a-f]{3}){1,2}$/i'))) {
-            throw new Error('EInput activeColor must be a hex code (ie: #333 || #333333)');
+exports.Input = function (props) {
+    var _a = react_1.useState(false), focused = _a[0], setFocus = _a[1];
+    var value = props.value, className = props.className, error = props.error, onBlur = props.onBlur, onFocus = props.onFocus, onChange = props.onChange, type = props.type, isHalf = props.isHalf, placeholder = props.placeholder, activeColor = props.activeColor;
+    var getStyle = function () {
+        var style = 'input-container';
+        if (focused) {
+            style += ' focused';
         }
-        return _this;
-    }
-    Input.prototype.render = function () {
-        var _this = this;
-        var _a = this.props, placeholder = _a.placeholder, value = _a.value, isHalf = _a.isHalf, onChange = _a.onChange, type = _a.type, activeColor = _a.activeColor;
-        var focused = this.state.focused;
-        return (React.createElement("div", { className: isHalf ? 'half-input-outer' : 'full-input-outer' },
-            React.createElement("div", { className: this.getStyle() },
-                React.createElement("label", { className: "input-placeholder", style: activeColor && focused ? { color: activeColor } : undefined }, placeholder),
-                React.createElement("input", { className: "input", value: value, style: activeColor && focused ? { boxShadow: "10px 20px 30px rgba(" + activeColor + ", .4)", borderColor: activeColor } : undefined, onChange: function (ev) { return onChange(ev.target.value); }, onBlur: function () { return _this.onblur(); }, onFocus: function () { return _this.onfocus(); }, type: type }))));
+        if (value !== '') {
+            style += ' not-empty';
+        }
+        if (className) {
+            style += " " + className;
+        }
+        return style;
     };
-    return Input;
-}(React.Component));
-exports.default = Input;
+    var getError = function () {
+        if (error) {
+            return (react_1.default.createElement("div", { className: "input-error" }, error));
+        }
+    };
+    var blur = function () {
+        setFocus(false);
+        if (onBlur) {
+            onBlur();
+        }
+    };
+    var focus = function () {
+        setFocus(true);
+        if (onFocus) {
+            onFocus();
+        }
+    };
+    return (react_1.default.createElement("div", { className: isHalf ? 'half-input-outer' : 'full-input-outer' },
+        react_1.default.createElement("div", { className: getStyle() },
+            react_1.default.createElement("label", { className: "input-placeholder", style: activeColor && focused ? { color: activeColor } : undefined }, placeholder),
+            react_1.default.createElement("input", { className: "input", value: value, style: activeColor && focused ? { boxShadow: "0 4px 4px rgba(" + activeColor + ", .4)", borderColor: activeColor } : undefined, onChange: function (ev) { return onChange(ev.target.value); }, onBlur: function () { return blur(); }, onFocus: function () { return focus(); }, type: type })),
+        getError()));
+};
 //# sourceMappingURL=Input.js.map

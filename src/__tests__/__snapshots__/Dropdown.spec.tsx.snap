@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dropdown list 1`] = `
+<div
+  className="dropdown open"
+>
+  <div
+    className="dropdown-row"
+    onClick={[Function]}
+  >
+    <span
+      className="dropdown-title"
+    >
+      Pizzák
+    </span>
+    <span
+      className="dropdown-arrow"
+    />
+  </div>
+  <div
+    className="dropdown-list"
+  >
+    <div
+      className="dropdown-item"
+      onClick={[Function]}
+    >
+      Kis Pizza
+    </div>
+    <div
+      className="dropdown-item"
+      onClick={[Function]}
+    >
+      Nagy Pizza
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Dropdown list selects the first element 1`] = `
+<div
+  className="dropdown"
+>
+  <div
+    className="dropdown-row"
+    onClick={[Function]}
+  >
+    <span
+      className="dropdown-title"
+    >
+      Kis Pizza
+    </span>
+    <span
+      className="dropdown-arrow"
+    />
+  </div>
+</div>
+`;

@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button 1`] = `
+<button
+  className="button square primary center"
+  onClick={[Function]}
+  style={
+    Object {
+      "backgroundColor": "#fff",
+      "border": "1px solid #fff",
+      "color": "#333",
+    }
+  }
+  type="button"
+>
+  Order
+</button>
+`;

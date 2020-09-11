@@ -1,4 +1,7 @@
 "use strict";
+/**
+ * @jest-environment jsdom
+ */
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
@@ -25,17 +28,35 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importDefault(require("react"));
 var index_1 = require("../index");
 var react_test_renderer_1 = __importStar(require("react-test-renderer"));
-test("Input test", function () {
-    var component = react_test_renderer_1.default.create(react_1.default.createElement(index_1.Input, { placeholder: "Name", value: "George", onChange: function (val) { return console.log(val); } }));
+var cities = [
+    { city: 'New York', id: '1' },
+    { city: 'Boston', id: '2' }
+];
+var component = react_test_renderer_1.default.create(react_1.default.createElement(index_1.SearchableDropdown, { data: cities, placeholder: "Cities", labelExtractor: function (item) { return item.city; }, keyExtractor: function (item) { return item.id; }, onChange: function (selected) { return console.log('value come from searchabledropdown change is ' + selected); }, activeColor: "#333" }));
+test("Dropdown open test", function () {
     var instance = component.root;
-    expect(instance.findByType(index_1.Input).props.placeholder).toBe("Name");
-    expect(instance.findByType(index_1.Input).props.value).toBe("George");
+    expect(instance.props.placeholder).toBe("Cities");
+    expect(instance.props.data).toBeInstanceOf(Array);
     react_test_renderer_1.act(function () {
         var inst = component.toJSON();
-        var input = inst.children[0].children[1];
-        input.props.onChange({ target: { value: 'value come from input' } });
+        var input = inst.children[0].children[0].children[1];
+        input.props.onFocus();
     });
     var tree = component.toJSON();
     expect(tree).toMatchSnapshot();
 });
-//# sourceMappingURL=Input.spec.js.map
+test("Dropdown item clicked test", function () {
+    var instance = component.root;
+    expect(instance.props.placeholder).toBe("Cities");
+    expect(instance.props.data).toBeInstanceOf(Array);
+    react_test_renderer_1.act(function () {
+        var inst = component.toJSON();
+        var input = inst.children[0].children[0].children[1];
+        var listItem = inst.children[1].children[0];
+        input.props.onFocus();
+        listItem.props.onClick();
+    });
+    var tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+});
+//# sourceMappingURL=SearchableDropdown.spec.js.map

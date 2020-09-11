@@ -1,19 +1,26 @@
-import * as React from "react";
-import EInput from "../index";
-import renderer from "react-test-renderer";
+import React from "react";
+import { Input } from "../index";
+import renderer, { act } from "react-test-renderer";
 
-test("Component should return an EInput with placeholder=Asd, value=asd, onChange='function: void' ", () => {
+test("Input test", () => {
   const component = renderer.create(
-    <EInput 
-      placeholder="Asd"
-      value="asd"
-      onChange={(val) => console.log(val)}
+    <Input
+      placeholder="Name"
+      value="George"
+      onChange={(val: string) => console.log(val)}
     />
   );
-  const testInstance = component.root;
+  const instance = component.root;
 
-  expect(testInstance.findByType(EInput).props.placeholder).toBe("Asd");
-  expect(testInstance.findByType(EInput).props.value).toBe("asd");
+  expect(instance.findByType(Input).props.placeholder).toBe("Name");
+  expect(instance.findByType(Input).props.value).toBe("George");
+
+  act(() => {
+    const inst: any = component.toJSON();
+    const input: any = inst.children[0].children[1];
+    
+    input.props.onChange( { target: { value: 'value come from input' } } );
+  });
 
   let tree = component.toJSON();
   expect(tree).toMatchSnapshot();

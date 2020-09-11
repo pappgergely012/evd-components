@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dropdown item clicked test 1`] = `
+<div
+  className="dropdown dropdown--searchable full"
+>
+  <div
+    className="full-input-outer"
+  >
+    <div
+      className="input-container focused not-empty"
+    >
+      <label
+        className="input-placeholder"
+        style={
+          Object {
+            "color": "#333",
+          }
+        }
+      >
+        Cities
+      </label>
+      <input
+        className="input"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        style={
+          Object {
+            "borderColor": "#333",
+            "boxShadow": "0 4px 4px rgba(#333, .4)",
+          }
+        }
+        value="New York"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Dropdown open test 1`] = `
+<div
+  className="dropdown dropdown--searchable full"
+>
+  <div
+    className="full-input-outer"
+  >
+    <div
+      className="input-container focused border-bottom-off "
+    >
+      <label
+        className="input-placeholder"
+        style={
+          Object {
+            "color": "#333",
+          }
+        }
+      >
+        Cities
+      </label>
+      <input
+        className="input"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        style={
+          Object {
+            "borderColor": "#333",
+            "boxShadow": "0 4px 4px rgba(#333, .4)",
+          }
+        }
+        value=""
+      />
+    </div>
+  </div>
+  <div
+    className="dropdown-list"
+    style={
+      Object {
+        "border": "1px solid #333",
+        "borderTop": "0px",
+      }
+    }
+  >
+    <div
+      className="dropdown-item"
+      onClick={[Function]}
+    >
+      New York
+    </div>
+    <div
+      className="dropdown-item"
+      onClick={[Function]}
+    >
+      Boston
+    </div>
+  </div>
+</div>
+`;

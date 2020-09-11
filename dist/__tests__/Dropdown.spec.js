@@ -25,17 +25,29 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var react_1 = __importDefault(require("react"));
 var index_1 = require("../index");
 var react_test_renderer_1 = __importStar(require("react-test-renderer"));
-test("Input test", function () {
-    var component = react_test_renderer_1.default.create(react_1.default.createElement(index_1.Input, { placeholder: "Name", value: "George", onChange: function (val) { return console.log(val); } }));
+var data = [{ name: 'Kis Pizza', key: 1 }, { name: 'Nagy Pizza', key: 2 }];
+var component = react_test_renderer_1.default.create(react_1.default.createElement(index_1.Dropdown, { placeholder: "Pizz\u00E1k", data: data, onItemClicked: function (item) { return console.log(item); }, keyExtractor: function (item) { return item.key; }, labelExtractor: function (item) { return item.name; } }));
+test("Dropdown list", function () {
     var instance = component.root;
-    expect(instance.findByType(index_1.Input).props.placeholder).toBe("Name");
-    expect(instance.findByType(index_1.Input).props.value).toBe("George");
+    var inst = component.toJSON();
+    expect(instance.props.placeholder).toBe("Pizzák");
+    expect(instance.props.data).toBeInstanceOf(Array);
     react_test_renderer_1.act(function () {
-        var inst = component.toJSON();
-        var input = inst.children[0].children[1];
-        input.props.onChange({ target: { value: 'value come from input' } });
+        inst.children[0].props.onClick();
     });
     var tree = component.toJSON();
     expect(tree).toMatchSnapshot();
 });
-//# sourceMappingURL=Input.spec.js.map
+test("Dropdown list selects the first element", function () {
+    var instance = component.root;
+    expect(instance.props.placeholder).toBe("Pizzák");
+    expect(instance.props.data).toBeInstanceOf(Array);
+    react_test_renderer_1.act(function () {
+        //the list test opened the dropdown
+        var openedInstance = component.toJSON();
+        openedInstance.children[1].children[0].props.onClick(data[0]);
+    });
+    var tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+});
+//# sourceMappingURL=Dropdown.spec.js.map
