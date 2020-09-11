@@ -1,5 +1,6 @@
 ### EVD-components/react-lib
 React components for faster development. 
+<<<<<<< HEAD
 Simple themes with unique colors and styles.
 
 ## Installation
@@ -11,12 +12,26 @@ yarn add @evd-components/react-lib <br />
 
 ```jsx
   import { removeAccents, dataFormat, isExist } from '@evd-components/react-lib';
+=======
+Simple themes with high customizability.
+
+
+## Installation
+npm install @evd-components/react-lib <br /><br />
+yarn add @evd-components/react-lib <br />
+
+## import to code
+```jsx 
+import { Input } from '@evd-components/react-lib;
+```
+>>>>>>> 8c45a6e6bcfdf057b7d8b612dbd839c0fde76330
 
   const accent = 'My name is Ági';
   const upper  = 'hi';
   const name   = 'john doe';
   const price  = 1200;
 
+<<<<<<< HEAD
   dataFormat('priceFormat', price); //returns 1 200 Ft
   dataFormat('uppercaseFirst', upper); //returns 'Hi'
   dataFormat('name', name); //returns 'John Doe'
@@ -41,10 +56,15 @@ Some example how to use the components:.
 import { Input } from '@evd-components/react-lib';
 
 
+=======
+## Usage of input
+```jsx
+>>>>>>> 8c45a6e6bcfdf057b7d8b612dbd839c0fde76330
 <Input 
   value="value string"
   placeholder="placeholder string"
   onChange={() => alert('input changed')}
+<<<<<<< HEAD
   activeColor="#333"
 />
 ```
@@ -102,5 +122,7 @@ import { Message } from '@evd-components/react-lib';
   message="Ooops, something went wrong!"
   duration={3000}
   type="success"
+=======
+>>>>>>> 8c45a6e6bcfdf057b7d8b612dbd839c0fde76330
 />
 ```
